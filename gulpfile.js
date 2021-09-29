@@ -7,8 +7,20 @@ const gulp = require("gulp"),
   notify = require("gulp-notify"),
   zip = require("gulp-zip"),
   uglify = require("gulp-uglify"),
+  deploy = require("gulp-gh-pages"),
   // imagemin = require("gulp-imagemin"),
   babel = require("gulp-babel");
+
+// deploying to github
+gulp.task("deploy", async () => {
+  return gulp.src("./dist/**/*").pipe(
+    deploy({
+      remoteUrl:
+        "https://github.com/Ahmed-Elbessfy/test-gulp-prod.github.io.git",
+      branch: "master",
+    })
+  );
+});
 
 // Live server task : creates live server at: localhost:8000 and allow reload
 gulp.task("live", async () => {
